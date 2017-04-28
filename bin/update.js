@@ -1,15 +1,15 @@
 /**
  * 检查更新
  */
-export class CodePush {
-    constructor(container, progressCon, progress, callback) {
-        this.container = container;
-        this.progressCon = progressCon;
-        this.progress = progress;
-        this.callback = callback;
-    }
+function  CodePush(container, progressCon, progress, callback) {
+    this.container = container;
+    this.progressCon = progressCon;
+    this.progress = progress;
+    this.callback = callback;
+}
 
-    checkUpdate() {
+CodePush.prototype = {
+    checkUpdate: function () {
         var _this = this;
         var downloadProgress = function (progress) {
             var scale = Math.floor(progress.receivedBytes / progress.totalBytes * 100);
@@ -26,11 +26,11 @@ export class CodePush {
 
         var onError = function (error) {
             _this.callback && _this.callback();
-            console.log('An error occurred. ' + error);
+            alert('An error occurred. ' + error);
         };
 
         var onInstallSuccess = function () {
-            console.log('Installation succeeded.' + elProcessBar);
+            alert('Installation succeeded.' + elProcessBar);
             setTimeout(codePush.restartApplication, 100);
             _this.progress.style.display = 'block';
             _this.container.style.display = 'none';
@@ -40,17 +40,22 @@ export class CodePush {
             if (!remotePackage) {
                 _this.callback && _this.callback();
                 _this.container.style.display = 'none';
-                console.log('The application is up to date.');
+                alert('The application is up to date.');
             } else {
                 _this.progressCon.style.display = 'block';
-                console.log('A CodePush update is available. Package hash: ' + remotePackage.packageHash);
+                alert('A CodePush update is available. Package hash: ' + remotePackage.packageHash);
                 remotePackage.download(onPackageDownloaded, onError, downloadProgress);
             }
         };
 
-        if (codePush) {
+        if (window.codePush) {
+            alert('dads');
             _this.container.style.display = 'block';
-            codePush.checkForUpdate(onUpdateCheck, onError);
+            window.codePush.checkForUpdate(onUpdateCheck, onError);
+        } else {
+            _this.callback();
         }
     }
 }
+
+module.exports = CodePush;
