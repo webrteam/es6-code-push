@@ -1,0 +1,19 @@
+{
+  "name": "es6-code-push",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./bin/upate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/es6plugins/es6-code-push.git"
+  },
+  "author": "shanyin-haiwai-fegroup",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/es6plugins/es6-code-push/issues"
+  },
+  "homepage": "https://github.com/es6plugins/es6-code-push#readme"
+}
