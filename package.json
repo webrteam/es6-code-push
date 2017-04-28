@@ -2,7 +2,7 @@
   "name": "es6-code-push",
   "version": "1.0.0",
   "description": "",
-  "main": "./bin/upate.js",
+  "main": "./bin/update.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
