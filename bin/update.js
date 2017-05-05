@@ -1,18 +1,18 @@
 /**
  * 检查更新
  */
-function CodePush(container, progressCon, progress, callback) {
+function CodePush(container, progressCon, progressLine, callback) {
     this.container = container;
     this.progressCon = progressCon;
-    this.progress = progress;
+    this.progressLine = progressLine;
     this.callback = callback;
 }
 
 CodePush.prototype = {
-    checkUpdate: function (container, progressCon, progress, callback) {
+    checkUpdate: function (container, progressCon, progressLine, callback) {
         var downloadProgress = function (progress) {
             var scale = Math.floor(progress.receivedBytes / progress.totalBytes * 100);
-            progress.style.width = scale + '%';
+            progressLine.style.width = scale + '%';
         };
 
         var onPackageDownloaded = function (localPackage) {
@@ -25,6 +25,7 @@ CodePush.prototype = {
 
         var onError = function (error) {
             callback && callback();
+            container.style.display = 'none';
             console.log('An error occurred. ' + error);
         };
 
