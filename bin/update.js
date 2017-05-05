@@ -30,7 +30,7 @@ CodePush.prototype = {
         };
 
         var onInstallSuccess = function () {
-            console.log('Installation succeeded.' + elProcessBar);
+            console.log('Installation succeeded.');
             setTimeout(window.codePush.restartApplication, 100);
             progress.style.display = 'block';
             container.style.display = 'none';
