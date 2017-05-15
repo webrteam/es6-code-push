@@ -9,7 +9,7 @@ function CodePush(container, progressCon, progressLine, callback) {
 }
 
 CodePush.prototype = {
-    checkUpdate: function (container, progressCon, progressLine, callback) {
+    checkUpdate: function (container, progressCon, progressLine, versionLabel, callback) {
         var downloadProgress = function (progress) {
             var scale = Math.floor(progress.receivedBytes / progress.totalBytes * 100);
             if(progressLine)
@@ -48,6 +48,9 @@ CodePush.prototype = {
             } else {
                 if(progressCon)
                     progressCon.style.display = 'block';
+                console.log(remotePackage);
+                versionLabel.innerHTML = remotePackage.label;
+
                 console.log('A CodePush update is available. Package hash: ' + remotePackage.packageHash);
                 remotePackage.download(onPackageDownloaded, onError, downloadProgress);
             }
